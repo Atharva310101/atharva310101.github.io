@@ -56,3 +56,65 @@ document.querySelectorAll('.nav-menu a').forEach(navLink => {
         navMenu.classList.remove('active');
     });
 });
+
+// --- CONTACT FORM AJAX SUBMISSION & POP-UP ---
+
+// Get all the necessary elements from the DOM
+const contactForm = document.querySelector('.contact-form');
+const popupOverlay = document.getElementById('popup-overlay');
+const closeButton = document.querySelector('.close-button');
+
+// Add the submit event listener to the form
+contactForm.addEventListener('submit', function(event) {
+    // Prevent the default form submission behavior (page reload)
+    event.preventDefault();
+
+    // Create a FormData object from the form
+    const formData = new FormData(contactForm);
+    
+    // Get the form's action URL (your Formspree endpoint)
+    const formAction = contactForm.getAttribute('action');
+
+    // Use fetch to send the data to Formspree
+    fetch(formAction, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Accept': 'application/json' // Tell Formspree to reply with JSON
+        }
+    }).then(response => {
+        // Check if the submission was successful
+        if (response.ok) {
+            // If successful, show the pop-up and reset the form
+            popupOverlay.classList.remove('hidden');
+            contactForm.reset();
+        } else {
+            // If there was a server error, show a generic error message
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    alert(data["errors"].map(error => error["message"]).join(", "));
+                } else {
+                    alert('Oops! There was a problem submitting your form.');
+                }
+            })
+        }
+    }).catch(error => {
+        // If there was a network error, show a generic error message
+        console.error('Fetch Error:', error);
+        alert('Oops! There was a network error.');
+    });
+});
+
+// Function to close the pop-up
+function closePopup() {
+    popupOverlay.classList.add('hidden');
+}
+
+// Add event listeners to close the pop-up
+closeButton.addEventListener('click', closePopup);
+popupOverlay.addEventListener('click', function(event) {
+    // Only close if the user clicks on the overlay itself, not the modal content
+    if (event.target === popupOverlay) {
+        closePopup();
+    }
+});

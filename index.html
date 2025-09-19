@@ -459,7 +459,7 @@ I’m a Computer Science graduate passionate about creating intelligent systems.
                     <p class="contact-subtitle-left">
                         I would love working on exciting roles at your organization. Feel free to reach out to me!
                     </p>
-                    <form id="contact-form" class="contact-form">
+                    <form id="contact-form" class="contact-form" action="https://formspree.io/f/xnqvljqg" method="POST">
                         <div class="form-group">
                             <input type="text" id="name" name="name" required placeholder="Your Name">
                         </div>
@@ -470,7 +470,7 @@ I’m a Computer Science graduate passionate about creating intelligent systems.
                             <textarea id="message" name="message" rows="5" required placeholder="Your Message"></textarea>
                         </div>
                         <!-- Add a mailto link -->
-                        <button type="submit" mail-to="mailto:pargaonkaratharva@gmail.com" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
+                        <button type="submit" class="btn">Send Message <i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
 
@@ -494,6 +494,16 @@ I’m a Computer Science graduate passionate about creating intelligent systems.
             </p>
         </div>
     </footer>
+
+    <!-- Pop-up Modal -->
+    <div id="popup-overlay" class="popup-overlay hidden">
+        <div id="popup-modal" class="popup-modal">
+            <span class="close-button">&times;</span>
+            <h2>Message Sent!</h2>
+            <p>Thank you for reaching out. I'll get back to you as soon as possible.</p>
+        </div>
+    </div>
+
 
     <!-- Your Custom JavaScript -->
     <script src="script.js"></script>
