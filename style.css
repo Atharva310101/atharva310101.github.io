@@ -1123,6 +1123,7 @@ section {
 #project-modal-content .project-description {
     display: block; /* Override truncation in modal */
     -webkit-line-clamp: unset;
+    line-clamp: unset;
     height: auto;
     overflow: visible;
 }
