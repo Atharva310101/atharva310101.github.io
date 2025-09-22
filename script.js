@@ -118,3 +118,39 @@ popupOverlay.addEventListener('click', function(event) {
         closePopup();
     }
 });
+
+// --- PROJECT CARD MODAL ---
+document.addEventListener('DOMContentLoaded', function() {
+    const projectCards = document.querySelectorAll('.project-card');
+    const modalOverlay = document.getElementById('project-modal-overlay');
+    const modalContent = document.getElementById('project-modal-content');
+    const closeModal = document.getElementById('project-modal-close');
+
+    projectCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Clone the project content to avoid moving it from the grid
+            const content = card.querySelector('.project-content').cloneNode(true);
+            
+            // Remove the 'Read More' button from the cloned content for the modal
+            const readMoreBtn = content.querySelector('.read-more-btn');
+            if (readMoreBtn) {
+                readMoreBtn.remove();
+            }
+
+            modalContent.innerHTML = ''; // Clear previous content
+            modalContent.appendChild(content);
+            modalOverlay.classList.remove('hidden');
+        });
+    });
+
+    function closeProjectModal() {
+        modalOverlay.classList.add('hidden');
+    }
+
+    closeModal.addEventListener('click', closeProjectModal);
+    modalOverlay.addEventListener('click', function(event) {
+        if (event.target === modalOverlay) {
+            closeProjectModal();
+        }
+    });
+});

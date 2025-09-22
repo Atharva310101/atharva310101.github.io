@@ -432,6 +432,7 @@ section {
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Add cursor pointer */
 }
 
 .project-card:hover {
@@ -463,6 +464,33 @@ section {
     margin-bottom: 20px;
     flex-grow: 1;
     text-align: justify;
+}
+
+.project-card .project-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 75px; /* Fallback for non-webkit browsers */
+}
+
+.read-more-btn {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#project-modal-content .project-description {
+    display: block; /* Override truncation in modal */
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    height: auto;
+    overflow: visible;
 }
 
 .project-tech-list {
@@ -1083,4 +1111,32 @@ section {
 
 .close-button:hover {
     color: var(--accent-color);
+}
+
+/* --- Project Modal Specific Styles --- */
+#project-modal-content .project-title {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+#project-modal-content .project-description {
+    display: block; /* Override truncation in modal */
+    -webkit-line-clamp: unset;
+    height: auto;
+    overflow: visible;
+}
+
+#project-modal-content .project-tech-list {
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+#project-modal-content .project-links {
+    justify-content: center;
+}
+
+#project-modal {
+    max-width: 700px; /* Wider modal for project details */
+    width: 90%;
 }
