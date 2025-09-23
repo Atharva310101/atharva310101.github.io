@@ -1035,6 +1035,19 @@ section {
         border-right-color: var(--border-color);
         border-left-color: transparent;
     }
+
+    /* --- Mobile-specific Modal Styles --- */
+    #project-modal {
+        max-height: 85vh; /* Limit height on mobile */
+        padding: 25px 20px; /* Adjust padding */
+        display: flex;
+        flex-direction: column;
+    }
+
+    #project-modal-content {
+        overflow-y: auto; /* Allow content to scroll */
+        padding-right: 10px; /* Add some space for the scrollbar */
+    }
 }
 
 /* --- REVISED POP-UP MODAL STYLING --- */
